@@ -1,5 +1,8 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+//@JsonInclude(JsonInclude.Include.NON_NULL) - dzięki temu, jak nie podamy w metodzie PUT jakiejś wartości to ona nie będzie miała null
 public class Post {
 
     private String title;
