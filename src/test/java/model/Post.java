@@ -2,9 +2,10 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-//@JsonInclude(JsonInclude.Include.NON_NULL) - dzięki temu, jak nie podamy w metodzie PUT jakiejś wartości to ona nie będzie miała null
+@JsonInclude(JsonInclude.Include.NON_NULL)// - dzięki temu, jak nie podamy w metodzie PUT jakiejś wartości to ona nie będzie miała null
 public class Post {
 
+    private Integer id;
     private String title;
     private String author;
 
@@ -22,5 +23,13 @@ public class Post {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

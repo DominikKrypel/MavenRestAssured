@@ -1,3 +1,4 @@
+import model.Post;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
@@ -37,5 +38,14 @@ public class VerifyResponse {
                 when().get("http://localhost:3000/posts/{postId}", 4).
                 then().log().all().body("title", Matchers.equalTo("Pierwszy POST")).// tutaj sprawdzamy wartość konkretnego pola, w naszym przypadku title
                 and().body("author", Matchers.equalTo("Dominik")); // jeżeli skorzystamny z "and()" po sekcji "then()" to robimy kolejną weryfikację
+    }
+
+    @Test
+    public void getPostObject(){
+
+       Post newPost = given().log().all().
+                when().get("http://localhost:3000/posts/{postId}", 4).
+                then().log().all().body("title", Matchers.equalTo("Pierwszy POST")).
+                and().body("author", Matchers.equalTo("Dominik")).extract().body().as(Post.class);
     }
 }
