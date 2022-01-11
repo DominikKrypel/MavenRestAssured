@@ -1,5 +1,6 @@
 import model.Post;
 import org.hamcrest.Matchers;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -42,10 +43,18 @@ public class VerifyResponse {
 
     @Test
     public void getPostObject(){
+        //|Weryfikacja ciała odpowiedzi - obiekt klasy Post
+        Integer id = 4;
 
        Post newPost = given().log().all().
-                when().get("http://localhost:3000/posts/{postId}", 4).
+                when().get("http://localhost:3000/posts/{postId}", id).
                 then().log().all().body("title", Matchers.equalTo("Pierwszy POST")).
-                and().body("author", Matchers.equalTo("Dominik")).extract().body().as(Post.class);
+                and().body("author", Matchers.equalTo("Dominik")).extract().body().as(Post.class); // Robimy ekstrakt body i musimy podać nazwę klasy "(Post.class);"
+        Assert.assertEquals(newPost.getAuthor(), "Dominik"); // pobieramy wartości z klasy "Post" i porównujemy z wartościamy, które wpisaliśmy w expected
+        Assert.assertEquals(newPost.getTitle(), "Pierwszy POST");
+        Assert.assertEquals(newPost.getId(), id);
     }
+    
+
+
 }
