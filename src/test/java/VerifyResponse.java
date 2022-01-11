@@ -1,3 +1,4 @@
+import io.restassured.http.ContentType;
 import model.Post;
 import org.hamcrest.Matchers;
 import org.testng.Assert;
@@ -54,7 +55,19 @@ public class VerifyResponse {
         Assert.assertEquals(newPost.getTitle(), "Pierwszy POST");
         Assert.assertEquals(newPost.getId(), id);
     }
-    
 
+    @Test
+    public void addPostObjectAndCompareTwoObjects() {
+        //Definiujemy ciało metody, tym razem podajemy w formie objektu i porównujemy dwa obiekty
+        Post newPost = new Post();
+        newPost.setAuthor("Tytuł obiektowy Drugi");
+        newPost.setTitle("Autor obiektowy Drugi");
 
+        Post createdPost = given().log().all().contentType(ContentType.JSON).body(newPost).
+                when().post("http://localhost:3000/posts").
+                then().log().all().extract().body().as(Post.class);
+
+        Assert.assertEquals(newPost,createdPost); // dzięki dwóm metodom w clasie "Post" - "equals() and hashCode()" -  możemy porównać dwa obiekty.
+                                                  // czytamy ten zapis tak: "gdy autor i tytuł dwóch obiektów będzie sobie równy, to wtedy dwa obiekty będą uznawane za równe "
+    }
 }
