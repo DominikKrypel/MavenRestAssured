@@ -18,9 +18,12 @@ public class AddPostTest {
                 "    \"author\": \"Dominik\"\n" +
                 "}";
 
-        given().log().all().contentType(ContentType.JSON).body(newPost). //ustawiamy w "content.type" wartość JSON"
-                 when().post("http://localhost:3000/posts").
-                 then().log().all();
+        given().
+                log().all().contentType(ContentType.JSON).body(newPost). //ustawiamy w "content.type" wartość JSON"
+        when().
+                post("http://localhost:3000/posts").
+        then().
+                log().all();
         //Tutaj dodatkowo dałem "log().all()" do given, dzięki temu zostanie wypisany mój request na ekranie razem z nagłówkami
     }
 
@@ -29,9 +32,12 @@ public class AddPostTest {
         //Definiujemy ciało metody, tym razem podajemy namiar na JSON
         File newPost = new File("src/test/resources/post.json");
 
-        given().log().all().contentType(ContentType.JSON).body(newPost).
-                when().post("http://localhost:3000/posts").
-                then().log().all();
+        given().
+                log().all().contentType(ContentType.JSON).body(newPost).
+        when().
+                post("http://localhost:3000/posts").
+        then().
+                log().all();
     }
 
     @Test
@@ -41,9 +47,12 @@ public class AddPostTest {
         newPost.put("title","tytul z mapy");
         newPost.put("author","Maniek");
 
-        given().log().all().contentType(ContentType.JSON).body(newPost).
-                when().post("http://localhost:3000/posts").
-                then().log().all();
+        given().
+                log().all().contentType(ContentType.JSON).body(newPost).
+        when().
+                post("http://localhost:3000/posts").
+        then().
+                log().all();
     }
 
     @Test
@@ -53,8 +62,11 @@ public class AddPostTest {
         newPost.setAuthor("Tytuł obiektowy");
         newPost.setTitle("Autor obiektowy");
 
-        given().log().all().contentType(ContentType.JSON).body(newPost).
-                when().post("http://localhost:3000/posts").
-                then().log().all();
+        given().
+                log().all().contentType(ContentType.JSON).body(newPost).
+        when().
+                post("http://localhost:3000/posts").
+        then().
+                log().all();
     }
 }

@@ -17,9 +17,12 @@ public class UpdatePost {
         newPost.put("title","tytul po aktualizacji");
         newPost.put("author","Stefan");
 
-        given().log().all().contentType(ContentType.JSON).body(newPost).
-                when().put("http://localhost:3000/posts/1").
-                then().log().all();
+        given().
+                log().all().contentType(ContentType.JSON).body(newPost).
+        when().
+                put("http://localhost:3000/posts/1").
+        then().
+                log().all();
     }
 
     @Test
@@ -30,9 +33,12 @@ public class UpdatePost {
         /* newPost.setTitle("Tytuł z Mapy"); - jak nie podamy tytułu i w klasie Post.java nie damy tagu @JsonInclude(JsonInclude.Include.NON_NULL), to będziemy
         mieli wartość null w pozytcji tytuł */
 
-        given().log().all().contentType(ContentType.JSON).body(newPost).
-                when().put("http://localhost:3000/posts/3").
-                then().log().all();
+        given().
+                log().all().contentType(ContentType.JSON).body(newPost).
+        when().
+                put("http://localhost:3000/posts/3").
+        then().
+                log().all();
     }
 
     @Test
@@ -42,8 +48,11 @@ public class UpdatePost {
         newPost.setAuthor("Tadeusz z Mapy");
         newPost.setTitle("Tytuł z Mapy");
 
-        given().log().all().contentType(ContentType.JSON).body(newPost).
-                when().patch("http://localhost:3000/posts/3").
-                then().log().all();
+        given().
+                log().all().contentType(ContentType.JSON).body(newPost).
+        when().
+                patch("http://localhost:3000/posts/3").
+        then().
+                log().all();
     }
 }
