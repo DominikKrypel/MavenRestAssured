@@ -26,7 +26,7 @@ public class JsonPathTests {
         Map<String,?> winnerInfo = response.path("winners.find {it.name=='Melania'}"); /* |Przejdźmy przez wszystkich zwyciężców i dla każdego zwytciężcy sprawdzili wartość pola imie, i szukamy
                                                                                i szukamy tych zwyciężców, których imie jest John*/
 
-        Integer winnerId = response.path("winners.find {it.name=='John'}.winerId"); /* szukamy wśród winnerów zwyciężcy, który ma name równy John i następnie mówimy o tym, że od tego
+        Integer winnerId = response.path("winners.find {it.name=='John'}.winnerId"); /* szukamy wśród winnerów zwyciężcy, który ma name równy John i następnie mówimy o tym, że od tego
                                                                                zwyciężcy chcemy pobrać wartość pola winnerId*/
 
         Integer maxNumber = response.path("wining-numbers.max()");
@@ -36,6 +36,6 @@ public class JsonPathTests {
 
         Integer moneySum = response.path("winners.collect{it.money}.sum()");
 
-        
+        List<Integer> winnersId = response.path("winners.findAll {it.name=='Melania'}.winnerId"); /*Tutaj możemy wyciągać listę elementów spełniająch nasze założenia*/
     }
 }
