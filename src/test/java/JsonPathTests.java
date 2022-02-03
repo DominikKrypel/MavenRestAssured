@@ -22,5 +22,18 @@ public class JsonPathTests {
         Map<String,?> winner = response.path("winners[0]"); // Mapa, która będzie zawierała klucz/wartość, która jest nieznana, dlatego zastępujemy znakiem zapytania
         List<Map<String,?>> winners = response.path("winners"); // pobranie dokładnych informacji o wszystkich zwyciężcach, wtedy korzystamy z listy map
         //w tej lini można uruchomić tryb Debug i sprawdzić jakie wartości zostały przypisane
+
+        Map<String,?> winnerInfo = response.path("winners.find {it.name='John'}"); // |Przejdźmy przez wszystkich zwyciężców i dla każdego zwytciężcy sprawdzili wartość pola imie, i szukamy
+                                                                              // i szukamy tych zwyciężców, których imie jest John
+
+        Integer winnerId = response.path("winners.find {it.name='John'}.winerId"); // szukamy wśród winnerów zwyciężcy, który ma name równy Andrew i następnie mówimy o tym, że od tego
+                                                                              // zwyciężcy chcemy pobrać wartość pola winnerId
+
+        Integer maxNumber = response.path("wining-numbers.max()");
+        Integer minNumber = response.path("wining-numbers.min()");
+
+        Map<String,?> winnerMaxId = response.path("winners.max {it.winnerId}"); // znajdujemy zwyciężcę, którego Id jest maksymalne
+
+        Integer moneySum = response.path("winners.collect{it.money}.sum()");
     }
 }
