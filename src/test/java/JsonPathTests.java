@@ -34,7 +34,7 @@ public class JsonPathTests {
 
         Map<String,?> winnerMaxId = response.path("winners.max {it.winnerId}"); /* znajdujemy zwyciężcę, którego Id jest maksymalne*/
 
-        Integer moneySum = response.path("winners.collect{it.money}.sum()"); v
+        Integer moneySum = response.path("winners.collect{it.money}.sum()");
 
         List<Integer> winnersId = response.path("winners.findAll {it.name=='Melania'}.winnerId"); /*Tutaj możemy wyciągać listę elementów spełniająch nasze założenia*/
     }
