@@ -12,5 +12,7 @@ public class JiraGetIssue {
                 .log().all();
     }
 
+    /*metoda preemptive - bez tego autentykacja nie zadziała, bo chodzi o headery. Odpowiedni header zostanie wysłany*/
+
     /*test niedokończony z uwagi na konieczność podania hasła*/
 }
